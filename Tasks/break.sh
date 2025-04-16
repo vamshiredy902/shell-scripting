@@ -13,3 +13,5 @@ do
   fi
   echo "Number: $i"
 done
+
+# break ➝ when you want to exit the loop early (e.g., found what you’re looking for).
