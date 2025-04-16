@@ -56,7 +56,7 @@ fi
 case $aws_service in
     ec2)
         echo "Listing EC2 Instances in $aws_region"
-        aws ec2 describe-instances --region $aws_region
+        aws ec2 describe-instances | jq '.Reservations[]. Instances[].InstanceId' --region $aws_region
         ;;
     rds)
         echo "Listing RDS Instances in $aws_region"
@@ -76,7 +76,7 @@ case $aws_service in
         ;;
     iam)
         echo "Listing IAM Users in $aws_region"
-        aws iam list-users --region $aws_region
+        aws iam list-users  jq -r '.Users[] | .UserName' --region $aws_region
         ;;
     route5)
         echo "Listing Route53 Hosted Zones in $aws_region"
